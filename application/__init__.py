@@ -1,7 +1,7 @@
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="template")
 
 # Sets up your database. We are using SQLAlchemy's sqlite. 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"

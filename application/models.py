@@ -1,5 +1,4 @@
 # How your databases are going to look. 
-
 from application import db 
 
 class Lists(db.Model):
