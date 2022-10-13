@@ -4,7 +4,7 @@ from application import app, db
 from application.models import Todos, Lists
 from application.forms import TodoForm, ListForm
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
     todos = Todos.query.all()
     return render_template('index.html', title="To do List", todos=todos)
