@@ -48,7 +48,23 @@ def add():
     # Otherwise return the template of add.html
     return render_template('add.html', title="Add a new Task", form=form)
 
-#UPDATE 
+#UPDATE list items
+@app.route('/updatelist/<int:lid>', methods=['GET', 'POST'])
+def updatelist(lid):
+    form = ListForm()
+
+    lists_ = Lists.query.get(lid)
+
+    if form.validate_on_submit():
+        lists_.name = form.name.data
+        db.session.commit()
+        return redirect(url_for('index'))
+    elif request.method == 'GET':
+        form.name.data = lists_.name
+    return render_template('updatelist.html', title='Update you task', form=form)
+
+
+#UPDATE todo items
 @app.route('/update/<int:tid>', methods=['GET', 'POST'])
 def update(tid):
     form = TodoForm()
