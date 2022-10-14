@@ -37,7 +37,9 @@ def add():
         # the variable tasks becomes what is put on the form 
         # todos becomes what we are going to be adding to the database
         todos = Todos(
-            tasks = form.tasks.data
+            tasks = form.tasks.data,
+            # Foreign key as a option to add to the create process. 
+            fk_lid = form.fk_lid.data
         )
         # This performs the add to database
         db.session.add(todos)
