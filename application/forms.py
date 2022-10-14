@@ -6,7 +6,7 @@ from wtforms import StringField, SubmitField, SelectField
 from application.models import Todos, Lists 
 
 class TodoForm(FlaskForm):
-    task = StringField("Task")
+    tasks = StringField("Task")
     submit = SubmitField("Submit")
 
 class ListForm(FlaskForm):
