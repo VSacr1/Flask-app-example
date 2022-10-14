@@ -77,6 +77,7 @@ def update(tid):
     if form.validate_on_submit():
         # What is put in the form gets ammended to the database
         tasks.tasks = form.tasks.data
+        tasks.fk_lid = form.fk_lid.data
         # Commit the changes
         db.session.commit()
         # Redirect to the url for index function 
@@ -85,6 +86,7 @@ def update(tid):
     elif request.method == 'GET':
         # Update the form with whats in the database
         form.tasks.data = tasks.tasks 
+        form.fk_lid.data = tasks.fk_lid
     # If we go to the url return the template update.html
     return render_template('update.html', title='Update you task', form=form)
 
