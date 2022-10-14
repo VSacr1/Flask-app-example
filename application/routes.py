@@ -5,14 +5,28 @@ from application import app, db
 from application.models import Todos, Lists
 from application.forms import TodoForm, ListForm
 
-#READ 
+#READ BOTH DATABASES
 #Location of this functionality: ip_address:5000/
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    lists = Lists.query.all()
     todos = Todos.query.all()
-    return render_template('index.html', title="To do List", todos=todos)
+    return render_template('index.html', title="To do List", todos=todos, lists=lists)
 
-#CREATE 
+# CREATE list items 
+@app.route('/addlist', methods=['POST', 'GET'])
+def listadd():
+    form = ListForm() 
+    if form.validate_on_submit(): 
+        lists = Lists(
+            name = form.name.data
+        )
+        db.session.add(lists)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('addlists.html', title="Add a new Task", form=form)
+
+#CREATE todo items
 #Location of this functionality: ip_address:5000/add
 @app.route('/add', methods=['POST','GET'])
 def add():
