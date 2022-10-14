@@ -1,2 +1,4 @@
 data.db 
+test.db
 application/__pycache__
+application/test/__pycache__

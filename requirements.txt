@@ -28,3 +28,4 @@ Werkzeug==2.0.3
 WTForms==3.0.0
 zipp==3.6.0
 gunicorn
+flask-testing==0.8.1
