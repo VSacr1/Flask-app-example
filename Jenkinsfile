@@ -15,7 +15,7 @@ pipeline {
 
         stage('Run the tests'){
             steps {
-                sh "echo 'This is where your tests are going to go'"
+                sh "echo 'This is where your tests are going to go Test'"
             }
         }
 
