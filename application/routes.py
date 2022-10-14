@@ -71,7 +71,15 @@ def update(tid):
     return render_template('update.html', title='Update you task', form=form)
 
 
-#DELETE
+#DELETE lists items
+@app.route('/deletelist/<int:lid>')
+def deletelist(lid):
+    lists_ = Lists.query.get(lid)
+    db.session.delete(lists_)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+#DELETE todo items
 #Location of this functionality: ip_address:5000/delete/1
 @app.route('/delete/<int:tid>')
 def delete(tid):
