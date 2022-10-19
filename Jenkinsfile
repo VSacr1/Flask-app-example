@@ -13,7 +13,9 @@ pipeline {
 
         stage('docker-compose build and run') {
             steps {
-                sh "/bin/bash -c 'docker rmi \$(docker images -q -f)'"
+                sh "/bin/bash -c 'docker stop \$(docker ps -a -q)'"
+                sh "/bin/bash -c 'docker rm \$(docker ps -a -q)'"
+                sh "/bin/bash -c 'docker rmi \$(docker images -a -q')"
                 sh "docker-compose up -d"
             }
         }
