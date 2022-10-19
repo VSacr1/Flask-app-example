@@ -13,7 +13,7 @@ pipeline {
 
         stage('docker-compose build and run') {
             steps {
-                sh "/bin/bash -c 'docker rmi \$(docker images -q)'"
+                sh "/bin/bash -c 'docker rmi \$(docker images -q -f)'"
                 sh "docker-compose up -d"
             }
         }
