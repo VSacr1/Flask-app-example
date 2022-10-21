@@ -13,6 +13,7 @@ pipeline {
 
         stage('docker-compose build and run') {
             steps {
+                sh "bash deploy.sh"
                 sh "docker stop $(docker ps -q)"
                 sh "docker rm $(docker ps -a -q)"
                 sh "docker rmi $(docker images -q -f)"
