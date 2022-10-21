@@ -16,6 +16,7 @@ pipeline {
                 ROOT_PASSWORD = credentials('ROOT_PASSWORD')   
             }
             steps {
+                sh "docker-compose down -v"
                 sh "/bin/bash -c 'docker stop \$(docker ps -a -q)'"
                 sh "/bin/bash -c 'docker rm \$(docker ps -a -q)'"
                 sh "/bin/bash -c 'docker rmi \$(docker images -a -q)'"
