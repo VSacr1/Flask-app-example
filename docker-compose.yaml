@@ -15,7 +15,9 @@ services:
     ports:
       - target: 3306
         published: 3306
+    
     environment: 
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD} 
       MYSQL_DATABASE: flask-app
 
