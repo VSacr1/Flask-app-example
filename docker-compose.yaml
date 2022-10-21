@@ -17,6 +17,7 @@ services:
         published: 3306
     environment: 
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD} 
+      MYSQL_DATABASE: flask-app
 
   # This is going to be where I put my configuration to create my nginx container 
   nginx:
