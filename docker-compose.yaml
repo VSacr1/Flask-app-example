@@ -8,6 +8,8 @@ services:
     # Build the Dockerfile that exists in this location
     build: ./flask-app
     container_name: flask-app
+    networks: 
+      - "flask-net"
 
   mysql: 
     build: ./db
@@ -18,6 +20,8 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD} 
       MYSQL_DATABASE: flask-app
+    networks: 
+      - "flask-net
 
   # This is going to be where I put my configuration to create my nginx container 
   nginx:
@@ -38,6 +42,8 @@ services:
       source: ./nginx.conf
       # What the source is going to overwrite.
       target: /etc/nginx/nginx.conf
+    networks: 
+      - "flask-net
     # This will not work unless flask-app is running. 
     depends_on: 
     - "flask-app"
