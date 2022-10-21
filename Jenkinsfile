@@ -12,6 +12,9 @@ pipeline {
         }
 
         stage('docker-compose build and run') {
+            environment {
+                ROOT_PASSWORD = credentials('ROOT_PASSWORD')   
+            }
             steps {
                 sh "bash deploy.sh"
                 sh "/bin/bash -c 'docker stop \$(docker ps -a -q)'"
