@@ -13,7 +13,9 @@ pipeline {
 
         stage('docker push') {
             steps {
-                
+                environment {
+                    DOCKER_CRED = credentials('DOCKER_CRED')   
+                }
                 sh "docker-compose build --parallel"
                 sh "docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW}"
                 sh "docker-compose push" 
