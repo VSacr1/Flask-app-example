@@ -20,7 +20,9 @@ pipeline {
             }
         }
         stage('docker swarm) { 
-            sh "docker stack deploy --compose-file docker-compose.yaml flask-app"    
+              steps {
+                sh "docker stack deploy --compose-file docker-compose.yaml flask-app"    
+              }
         }
     }
 }
