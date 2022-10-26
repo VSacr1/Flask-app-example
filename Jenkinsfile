@@ -11,14 +11,16 @@ pipeline {
             }
         }
 
-        stage('docker-compose build and run') {
+        stage('docker push') {
             steps {
-                sh "/bin/bash -c 'docker stop \$(docker ps -a -q)'"
-                sh "/bin/bash -c 'docker rm \$(docker ps -a -q)'"
-                sh "/bin/bash -c 'docker rmi \$(docker images -a -q)'"
-                sh "docker-compose up -d"
+                sh "/bin/bash -c 'docker rmi \$(docker images -q)'"
+                sh "docker-compose build --parallel"
+                sh "docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW}"
+                sh "docker-compose push" 
             }
         }
-
+        stage('docker swarm) { 
+            sh "docker stack deploy --compose-file docker-compose.yaml flask-app"    
+        }
     }
 }
