@@ -6,13 +6,18 @@ services:
     # Must be logged in to dockerhub to push, but not to pull container code from dockerhub. 
     # image: [HOST]/[AUTHOR]/[APPLICATION]:[TAG]
     # Build the Dockerfile that exists in this location
+    image: vsacre/flask-app:latest
+    deploy:
+       replicas: 2
     build: ./flask-app
     container_name: flask-app
 
   # This is going to be where I put my configuration to create my nginx container 
   nginx:
   # If this image is not available locally we will pull it from dockerhub. 
-    image: nginx:latest
+    image: vsacre/flask-nginx:latest
+    deploy:
+       replicas: 2
     # Give container a name 
     container_name: nginx
     # Is where we specify ports for the container
