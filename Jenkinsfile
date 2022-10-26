@@ -19,7 +19,7 @@ pipeline {
                 sh "docker-compose push" 
             }
         }
-        stage('docker swarm) { 
+        stage('docker swarm') { 
               steps {
                 sh "docker stack deploy --compose-file docker-compose.yaml flask-app"    
               }
